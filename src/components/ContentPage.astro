@@ -1,0 +1,70 @@
+---
+/** Every content page: H1, one-line answer, the calculator at once, the folded answer, the body, then the
+ *  generated rule table of the state (unemployment page) or of the program (leave page), FAQ, sources. */
+import PageLayout from '../layouts/PageLayout.astro';
+import Clamp from './Clamp.astro';
+import Tool from './Tool.astro';
+import Body from './Body.astro';
+import { route, ROUTES } from '../i18n/routes';
+import { label, GROUPS } from '../i18n/nav';
+import { t } from '../i18n/ui';
+import { pageById } from '../lib/pages';
+import { helpers, SOURCES, table, ext } from '../lib/helpers';
+import { KIT as K } from '../lib/kit';
+import { articleSchema, faqSchema, breadcrumbSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { AUTHOR_NAME } from '../data/site-config';
+import type { PageDef } from '../lib/page-types';
+interface Props { page: PageDef }
+const { page } = Astro.props;
+const lang = 'en';
+const ui = t(lang);
+const path = route(page.id, lang);
+const group = GROUPS.find((g) => g.id === page.group)!;
+const jsonLd = [webApplicationSchema({ name: page.h1, description: page.description, path, lang }), articleSchema({ title: page.h1, description: page.description, path, lang }), webPageSchema({ name: page.h1, description: page.description, path, lang }), breadcrumbSchema([{ name: ui.breadcrumbHome, path: route('home', lang) }, { name: page.nav, path }])];
+if (page.faqs.length) jsonLd.push(faqSchema(page.faqs, lang));
+const related = page.related.filter((id) => ROUTES.some((r) => r.id === id)).map((id) => ({ href: route(id, lang), name: label(id), description: pageById(id)?.card ?? '' }));
+const sources = page.sources.map((k) => ({ name: SOURCES[k].label, url: SOURCES[k].url }));
+const st = page.st ? K.S(page.st) : null;
+const stRows = st ? [
+  ['Earnings needed in the base period', st.qual],
+  ['Weekly benefit formula', st.comp],
+  ['Weekly benefit, 2026', `${K.usd(st.min)} to ${K.usd(st.max)}${st.da ? ` (${K.usd(st.da[0])} to ${K.usd(st.da[1])} with dependents)` : ''}`],
+  ['Most you can draw in a benefit year', st.mbaText],
+  ['Weeks payable', st.weeks[0] === st.weeks[1] ? `${st.weeks[1]}` : `${st.weeks[0]} to ${st.weeks[1]}`],
+  ['Pay you can earn in a week without losing benefits', st.disregard],
+] : [];
+const pg = page.prog ? K.Pg(page.prog) : null;
+const reasonName: Record<string, string> = { medical: 'Own health or pregnancy', bonding: 'Bonding with a new child', care: 'Caring for a relative', combined: 'All reasons together', pregnancy: 'With a pregnancy complication', prenatal: 'Prenatal care' };
+const pgRows = pg ? [
+  ['Benefit rule', pg.rule],
+  ...(pg.status === 'paying' ? [['Weekly benefit, 2026', `${pg.min ? `${K.cents(pg.min)} to ` : 'up to '}${K.cents(pg.max ?? 0)}`]] : [['Benefits start', pg.start ? K.day(pg.start) : 'not set']]),
+  ...Object.entries(pg.weeks).map(([k, v]) => [`Weeks: ${reasonName[k] ?? k}`, String(v)]),
+  ...Object.entries(pg.waiting).map(([k, v]) => [`Unpaid waiting period: ${(reasonName[k] ?? k).toLowerCase()}`, v ? `${v} days` : 'none']),
+  ['Employee premium, 2026', pg.contrib.rate ? `${K.dec(pg.contrib.rate * 100, 3)}% of wages${pg.contrib.cap ? ` up to ${K.usd(pg.contrib.cap)}` : ''}${pg.contrib.weeklyMax ? `, at most ${K.cents(pg.contrib.weeklyMax)} a week` : ''}${pg.contrib.note ? ` (${pg.contrib.note})` : ''}` : (pg.contrib.covers ?? pg.contrib.note ?? 'none')],
+  ...(pg.calculator ? [['Official calculator', ext(pg.calculator, new URL(pg.calculator).hostname)]] : []),
+] : [];
+---
+<PageLayout title={page.title} description={page.description} lang={lang} jsonLd={jsonLd} faqs={page.faqs} related={related} sources={sources} breadcrumbs={[{ label: group.label }, { label: page.nav }]}>
+  <article>
+    <header class="mb-4">
+      <h1 class="font-serif text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{page.h1}</h1>
+      <p class="mt-2 text-base text-navy-700 sm:text-lg">{page.intro}</p>
+    </header>
+    <div data-outil data-chrome class="mb-4"><Tool kind={page.tool} arg={page.toolArg} idPrefix={`p${page.order}`} /></div>
+    <p class="mb-6 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('method', lang)} class="underline hover:text-navy-900">{label('method')}</a> · state laws and agency pages read {K.day(K.RETRIEVED)}</p>
+    <Clamp text={page.resume} lang={lang} id={`clamp-${page.id}`} class="mb-8" />
+    <Body html={page.body(helpers())} path={path} />
+    {st && (
+      <section data-chrome class="mt-10">
+        <h2 class="font-serif text-2xl font-bold text-navy-900">{st.name} unemployment rules in force in 2026</h2>
+        <Fragment set:html={table(['Rule', `${st.name}`], stRows, `As written in the U.S. Department of Labor table of state laws effective July 2026${st.maxNote ? `; ${st.maxNote}` : ''}.`, ['l', 'l'])} />
+      </section>
+    )}
+    {pg && (
+      <section data-chrome class="mt-10">
+        <h2 class="font-serif text-2xl font-bold text-navy-900">{pg.name}: the 2026 figures</h2>
+        <Fragment set:html={table(['Item', 'Value'], pgRows, `Read on the agency pages and statutes listed below, ${K.day(K.RETRIEVED)}.`, ['l', 'l'])} />
+      </section>
+    )}
+  </article>
+</PageLayout>

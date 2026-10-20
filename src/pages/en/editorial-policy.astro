@@ -1,0 +1,21 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { route } from '../../i18n/routes';
+import { AUTHOR_NAME, REVIEW_CYCLE_MONTHS } from '../../data/site-config';
+const lang = 'en';
+---
+<PageLayout title="Editorial policy of Leave Pay by State: laws and agency pages" description="How Leave Pay by State writes its pages: formulas read in state laws, the Labor Department table and agency pages, each cited with its date, and no figure without a source." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <article class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Editorial policy</h1>
+    <h2>Where the figures come from</h2>
+    <p>A formula, a cap or a premium enters the site only when it was read in a state statute, on the page of the agency that pays the benefit, in an IRS publication or in the Department of Labor table of state unemployment laws. Each one is stored with the address of the document; law firm pages, payroll blogs and other calculators are read to see what claimants ask, never to take a number.</p>
+    <h2>How pages are written</h2>
+    <p>No amount is typed into the text. The rules live in three data files, and every page computes its figures from them when the site is built, with the same engine as the calculator. A program whose weekly amounts are not published yet is shown as to come, with its start date, never with a projected amount.</p>
+    <h2>What we do not do</h2>
+    <p>We do not say whether you qualify, judge why you left a job or recommend a lawyer, an insurer or a filing service. Eligibility and amounts belong to the state agency.</p>
+    <h2>Money</h2>
+    <p>{AUTHOR_NAME} receives nothing from law firms, insurers, payroll companies or lead buyers and links to none of them as a sponsor. There is no advertising today; if some is added it will be labeled, limited to three places a page, and never placed above a calculator.</p>
+    <h2>Updates and corrections</h2>
+    <p>Caps are reread every January, every July and whenever a state announces a change, and the whole site at least every {REVIEW_CYCLE_MONTHS} months. A reported error is checked against the official page and, once fixed, moves the date shown on the page. Write through the <a href={route('contact', lang)}>contact page</a>; the rules are on the <a href={route('method', lang)}>method page</a>.</p>
+  </article>
+</PageLayout>

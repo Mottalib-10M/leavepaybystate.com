@@ -1,0 +1,1199 @@
+{
+ "_doc": "Unemployment insurance by state, transcribed from U.S. DOL ETA, Significant Provisions of State Unemployment Insurance Laws, effective July 2026 (https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/July2026.pdf), read 2026-10-20. alts: candidate formulas, the highest wins, each with an optional cap. base: hq = highest quarter wages, avg2 = average of the two highest quarters, sum2 = total of the two highest quarters, bpw = base period wages, q3 = third quarter. mult multiplies the base; add is added. mba: bpwFrac = maximum benefit amount as a share of base period wages (null = no such cap); weeks = [low, high] weeks payable; idx = duration depends on the state unemployment rate; sched = weighted schedule (weeks depend on the BPW/HQW ratio). approx: the formula is a documented simplification of a statutory table.",
+ "states": [
+  {
+   "code": "AL",
+   "name": "Alabama",
+   "qual": "1½ x HQW",
+   "comp": "1/26 avg of 2 highest qtrs",
+   "alts": [
+    {
+     "base": "avg2",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 45,
+   "max": 275,
+   "da": null,
+   "disregard": "1/3 WBA",
+   "mbaText": "Lesser of 1/4 BPW or 14 x WBA",
+   "bpwFrac": 0.25,
+   "weeks": [
+    14,
+    14
+   ],
+   "idx": true
+  },
+  {
+   "code": "AK",
+   "name": "Alaska",
+   "qual": "$2,500; wages in 2 qtrs; at least $250 outside HQ",
+   "comp": "0.9-2.2% of annual wages + DA up to $72",
+   "table": true,
+   "min": 56,
+   "max": 370,
+   "da": [
+    128,
+    442
+   ],
+   "disregard": "$50 and 1/4 wages over $50",
+   "mbaText": "Weighted schedule of BPW to HQW for # of weeks x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    16,
+    26
+   ],
+   "sched": true
+  },
+  {
+   "code": "AZ",
+   "name": "Arizona",
+   "qual": "1½ x HQW and 390 x minimum wage in effect in 1 qtr; or wages in 2 qtrs with wages in 1 qtr sufficient to qualify for maximum WBA and total BPW ≥ TWB",
+   "comp": "1/25 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.04
+    }
+   ],
+   "min": 236,
+   "max": 320,
+   "da": null,
+   "disregard": "$160.49",
+   "mbaText": "26 x WBA or 24 x WBA if the unemployment rate in the prior calendar qtr is less than 5%",
+   "bpwFrac": null,
+   "weeks": [
+    8,
+    24
+   ],
+   "idx": true
+  },
+  {
+   "code": "AR",
+   "name": "Arkansas",
+   "qual": "35 x WBA; wages in 2 qtrs",
+   "comp": "1/26 of the avg of the 4 qtrs in BP",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.0096154
+    }
+   ],
+   "min": 81,
+   "max": 451,
+   "da": null,
+   "disregard": "40% WBA",
+   "mbaText": "Lesser of 1/3 BPW or 12 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    9,
+    12
+   ]
+  },
+  {
+   "code": "CA",
+   "name": "California",
+   "qual": "$1,300 in HQ, or $900 in HQ with BPW = 1¼ x HQ",
+   "comp": "1/23 to 1/26 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "approx": "The EDD table pays between 1/23 and 1/26 of the high quarter; the engine uses 1/26, so at low wages the estimate can be up to 13% below the table.",
+   "min": 40,
+   "max": 450,
+   "da": null,
+   "disregard": "Greater of $25 or 1/4 wages",
+   "mbaText": "Lesser of 1/2 BPW or 26 x WBA",
+   "bpwFrac": 0.5,
+   "weeks": [
+    14,
+    26
+   ]
+  },
+  {
+   "code": "CO",
+   "name": "Colorado",
+   "qual": "40 x WBA or $2,500, whichever is greater",
+   "comp": "Higher of 60% of 1/26 of 2 consecutive HQW, capped by 50% of State avg weekly earnings or 50% of 1/52 BP earnings capped by 55% of State avg weekly earnings",
+   "alts": [
+    {
+     "base": "sum2",
+     "mult": 0.0230769,
+     "cap": 804
+    },
+    {
+     "base": "bpw",
+     "mult": 0.0096154,
+     "cap": 884
+    }
+   ],
+   "min": 25,
+   "max": 884,
+   "da": null,
+   "disregard": "1/2 WBA",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    13,
+    26
+   ]
+  },
+  {
+   "code": "CT",
+   "name": "Connecticut",
+   "qual": "40 x WBA",
+   "comp": "1/26 avg of 2 HQs + $15 per dep, up to 5; DA capped at WBA",
+   "alts": [
+    {
+     "base": "avg2",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 44,
+   "max": 721,
+   "da": [
+    88,
+    796
+   ],
+   "disregard": "1/3 wages",
+   "mbaText": "N/A (uniform duration)",
+   "bpwFrac": null,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "DE",
+   "name": "Delaware",
+   "qual": "36 x WBA",
+   "comp": "1/46 total wages in 2 highest qtrs",
+   "alts": [
+    {
+     "base": "sum2",
+     "mult": 0.0217391
+    }
+   ],
+   "min": 20,
+   "max": 450,
+   "da": null,
+   "disregard": "Greater of $10 or 50% WBA",
+   "mbaText": "Lesser of 1/2 BPW or 26 x WBA",
+   "bpwFrac": 0.5,
+   "weeks": [
+    24,
+    26
+   ]
+  },
+  {
+   "code": "DC",
+   "name": "District of Columbia",
+   "qual": "1½ x HQW or within $70; not less than $1,950 in 2 qtrs; $1,300 in 1 qtr",
+   "comp": "1/26 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 50,
+   "max": 444,
+   "da": null,
+   "disregard": "1/3 of wages plus $50",
+   "mbaText": "N/A (uniform duration)",
+   "bpwFrac": null,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "FL",
+   "name": "Florida",
+   "qual": "1½ x HQW; minimum $3,400; wages in 2 qtrs",
+   "comp": "1/26 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 32,
+   "max": 275,
+   "da": null,
+   "disregard": "8 x Federal hourly minimum wage",
+   "mbaText": "Lesser of 25% BPW or 12 x WBA",
+   "bpwFrac": 0.25,
+   "weeks": [
+    9,
+    12
+   ],
+   "idx": true
+  },
+  {
+   "code": "GA",
+   "name": "Georgia",
+   "qual": "Wages in 2 qtrs & 150% x HQW or HQW divided by 21 for WBA w/ total earnings in 2 qtrs totaling at least 40 x WBA",
+   "comp": "1/42 of wages in highest 2 qtrs or 1/21 HQW",
+   "alts": [
+    {
+     "base": "sum2",
+     "mult": 0.0238095
+    }
+   ],
+   "min": 55,
+   "max": 365,
+   "da": null,
+   "disregard": "$50",
+   "mbaText": "Lesser of 14 x WBA or 1/4 BPW",
+   "bpwFrac": 0.25,
+   "weeks": [
+    6,
+    26
+   ],
+   "idx": true,
+   "weeksCap": 14
+  },
+  {
+   "code": "HI",
+   "name": "Hawaii",
+   "qual": "26 x WBA; wages in 2 qtrs",
+   "comp": "1/21 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.047619
+    }
+   ],
+   "min": 5,
+   "max": 868,
+   "da": null,
+   "disregard": "$150",
+   "mbaText": "26 x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "ID",
+   "name": "Idaho",
+   "qual": "1¼ x HQW; minimum $1,872 in 1 qtr",
+   "comp": "1/26 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 72,
+   "max": 624,
+   "da": null,
+   "disregard": "1/2 WBA",
+   "mbaText": "Weighted schedule of BPW to HQW for # of weeks x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    10,
+    26
+   ],
+   "sched": true,
+   "idx": true
+  },
+  {
+   "code": "IL",
+   "name": "Illinois",
+   "qual": "$1,600; $440 outside HQ",
+   "comp": "47% of claimant's AWW in 2 highest qtrs",
+   "alts": [
+    {
+     "base": "sum2",
+     "mult": 0.0180769
+    }
+   ],
+   "min": 51,
+   "max": 628,
+   "da": [
+    77,
+    859
+   ],
+   "disregard": "1/2 WBA",
+   "mbaText": "Lesser of 26 x WBA (plus DA) or BP wages",
+   "bpwFrac": 1,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "IN",
+   "name": "Indiana",
+   "qual": "1½ x HQW totaling at least $2,500 in last 2 qtrs; not less than $4,200 in BP",
+   "comp": "47% of AWW in BP",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.0090385
+    }
+   ],
+   "min": 37,
+   "max": 390,
+   "da": null,
+   "disregard": "$100",
+   "mbaText": "Lesser of 28% BPW or 26 x WBA",
+   "bpwFrac": 0.28,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "IA",
+   "name": "Iowa",
+   "qual": "1¼ x HQW; 3.5% of the statewide AAW in HQ; 1/2 HQW in qtr not the HQ",
+   "comp": "1/23 HQW or 1/19-1/22 HQW for claimants with deps",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0434783
+    }
+   ],
+   "min": 96,
+   "max": 644,
+   "da": [
+    116,
+    790
+   ],
+   "disregard": "25% WBA",
+   "mbaText": "Lesser of 1/3 BPW or 16 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    10,
+    16
+   ]
+  },
+  {
+   "code": "KS",
+   "name": "Kansas",
+   "qual": "30 x WBA; wages in 2 qtrs",
+   "comp": "4.25% HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0425
+    }
+   ],
+   "min": 165,
+   "max": 663,
+   "da": null,
+   "disregard": "25% WBA",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    10,
+    16
+   ],
+   "idx": true
+  },
+  {
+   "code": "KY",
+   "name": "Kentucky",
+   "qual": "1½ x HQW; 8 x WBA in last 2 qtrs; at least $1,500 outside HQ",
+   "comp": "1.1923% BPW",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.011923
+    }
+   ],
+   "min": 39,
+   "max": 720,
+   "da": null,
+   "disregard": "1/5 wages",
+   "mbaText": "Lesser of 16-24 x WBA or 1/3 BPW",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    16,
+    24
+   ],
+   "idx": true
+  },
+  {
+   "code": "LA",
+   "name": "Louisiana",
+   "qual": "$1,200 total BPW; wages in 2 qtrs; 1½ x HQW",
+   "comp": "1/25 of the avg of wages in 4 qtrs of BP",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.01
+    }
+   ],
+   "min": 35,
+   "max": 282,
+   "da": null,
+   "disregard": "Lesser of 1/2 WBA or $50",
+   "mbaText": "N/A",
+   "bpwFrac": null,
+   "weeks": [
+    12,
+    20
+   ],
+   "idx": true
+  },
+  {
+   "code": "ME",
+   "name": "Maine",
+   "qual": "2 x AWW in 2 different BP qtrs; total BPW = 6 x AWW",
+   "comp": "1/22 avg wages paid in 2 highest qtrs of BP + $25 per dep up to 75% of WBA",
+   "alts": [
+    {
+     "base": "avg2",
+     "mult": 0.0454545
+    }
+   ],
+   "min": 113,
+   "max": 649,
+   "da": [
+    197,
+    1135
+   ],
+   "disregard": "$128",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    15,
+    26
+   ]
+  },
+  {
+   "code": "MD",
+   "name": "Maryland",
+   "qual": "1½ x HQW; $1,176.01 in HQ; $1,800 in 2 qtrs",
+   "comp": "1/24 HQW + $8 per dep up to 5 deps",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0416667
+    }
+   ],
+   "min": 50,
+   "max": 430,
+   "da": [
+    90,
+    430
+   ],
+   "disregard": "Less than or equal to $50",
+   "mbaText": "N/A (uniform duration)",
+   "bpwFrac": null,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "MA",
+   "name": "Massachusetts",
+   "qual": "30 x WBA; $6,300 minimum",
+   "comp": "50% AWW + $25 per dep (no cap on DA)",
+   "alts": [
+    {
+     "base": "sum2",
+     "mult": 0.0192308
+    }
+   ],
+   "min": 60,
+   "max": 1154,
+   "da": null,
+   "disregard": "1/3 WBA",
+   "mbaText": "Lesser of 36% BPW or 30 x WBA",
+   "bpwFrac": 0.36,
+   "weeks": [
+    10,
+    30
+   ],
+   "idx": true,
+   "maxNote": "$1,154 for benefit years from October 4, 2026 (Massachusetts DUA); the DOL table of July 2026 still shows $1,105.",
+   "src": "ma_ui"
+  },
+  {
+   "code": "MI",
+   "name": "Michigan",
+   "qual": "Total BPW = 1½ x HQW; wages in at least 2 BP qtrs; at least $5,328 in HQ; or wages in at least 2 BP qtrs; BPW at least 20 x State AWW",
+   "comp": "4.1% HQW + $19.33 for each dep up to 5",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.041
+    }
+   ],
+   "min": 218,
+   "max": 530,
+   "da": null,
+   "disregard": "Reduction of 50 cents per $1 earned below 1.5 x WBA; total benefits plus earnings cannot exceed 1.5 x WBA",
+   "mbaText": "Lesser of 43% BPW or 26 x WBA",
+   "bpwFrac": 0.43,
+   "weeks": [
+    14,
+    26
+   ]
+  },
+  {
+   "code": "MN",
+   "name": "Minnesota",
+   "qual": "5.3% of State AAW",
+   "comp": "Higher of 50% of 1/13 HQW up to 43% of State AWW or 50% of 1/52 BPW up to 66⅔% of State AWW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615,
+     "cap": 611
+    },
+    {
+     "base": "bpw",
+     "mult": 0.0096154,
+     "cap": 948
+    }
+   ],
+   "min": 37,
+   "max": 948,
+   "da": null,
+   "disregard": "WBA reduced by 50 cents for every $1 earned",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    9,
+    26
+   ]
+  },
+  {
+   "code": "MS",
+   "name": "Mississippi",
+   "qual": "40 x WBA; $780 in HQ; wages in 2 qtrs",
+   "comp": "1/26 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 30,
+   "max": 235,
+   "da": null,
+   "disregard": "$40",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    13,
+    26
+   ]
+  },
+  {
+   "code": "MO",
+   "name": "Missouri",
+   "qual": "1½ x HQW; $1,500 in 1 qtr; or wages in 2 qtrs of BP = 1½ maximum TWB",
+   "comp": "4% of the avg of the 2 HQWs",
+   "alts": [
+    {
+     "base": "avg2",
+     "mult": 0.04
+    }
+   ],
+   "min": 35,
+   "max": 320,
+   "da": null,
+   "disregard": "Greater of 20% WBA or $20",
+   "mbaText": "Lesser of 1/3 BPW or 20 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    8,
+    20
+   ],
+   "idx": true
+  },
+  {
+   "code": "MT",
+   "name": "Montana",
+   "qual": "BPW > 1½ x HQW and total wages > 7% of AAW or BPW > 50% of AAW",
+   "comp": "1% BPW or 1.9% wages in 2 HQs",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.01
+    },
+    {
+     "base": "sum2",
+     "mult": 0.019
+    }
+   ],
+   "min": 227,
+   "max": 767,
+   "da": null,
+   "disregard": "1/4 WBA",
+   "mbaText": "Weighted schedule of BPW to HQW for # of weeks x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    8,
+    24
+   ],
+   "sched": true
+  },
+  {
+   "code": "NE",
+   "name": "Nebraska",
+   "qual": "$5,440 in BP; $1,850 in HQW and wages in at least one other quarter of $800",
+   "comp": "1/2 AWW of High Quarter",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 70,
+   "max": 582,
+   "da": null,
+   "disregard": "1/4 WBA",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    10,
+    26
+   ]
+  },
+  {
+   "code": "NV",
+   "name": "Nevada",
+   "qual": "1½ x HQW in BP and $400 in HQ; or wages in 3 of 4 qtrs in BP and $400 in HQ",
+   "comp": "1/25 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.04
+    }
+   ],
+   "min": 16,
+   "max": 657,
+   "da": null,
+   "disregard": "1/3 wages",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    8,
+    26
+   ]
+  },
+  {
+   "code": "NH",
+   "name": "New Hampshire",
+   "qual": "$2,800; $1,400 in each of 2 qtrs",
+   "comp": "1% - 1.1% annual wages",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.01
+    }
+   ],
+   "approx": "New Hampshire pays 1% to 1.1% of annual wages under a statutory schedule; the engine uses 1%, the low end.",
+   "min": 32,
+   "max": 427,
+   "da": null,
+   "disregard": "30% WBA",
+   "mbaText": "N/A (uniform duration)",
+   "bpwFrac": null,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "NJ",
+   "name": "New Jersey",
+   "qual": "20 weeks employment at 20 x State hourly minimum wage or 1,000 x State hourly minimum wage",
+   "comp": "60% of claimant's AWW + DA",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.0115385
+    }
+   ],
+   "approx": "New Jersey averages pay over the weeks actually worked in the base year; the engine assumes 52 weeks of work.",
+   "min": 186,
+   "max": 905,
+   "da": [
+    213,
+    905
+   ],
+   "disregard": "Greater of 20% WBA or $5",
+   "mbaText": "Number of weeks worked in base year up to 26 x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    20,
+    26
+   ],
+   "src": "nj_ui_2026"
+  },
+  {
+   "code": "NM",
+   "name": "New Mexico",
+   "qual": "$2,818.70 in HQW and wages in at least 1 other qtr",
+   "comp": "53.5% of AWW paid in BP qtr in which wages were highest",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0411538
+    }
+   ],
+   "min": 116,
+   "max": 624,
+   "da": [
+    166,
+    674
+   ],
+   "disregard": "1/5 WBA",
+   "mbaText": "Lesser of 60% BPW or 26 x WBA",
+   "bpwFrac": 0.6,
+   "weeks": [
+    14,
+    26
+   ]
+  },
+  {
+   "code": "NY",
+   "name": "New York",
+   "qual": "1½ x HQW; $3,500 in HQ",
+   "comp": "1/25 to 1/26 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "approx": "New York pays 1/25 or 1/26 of the high quarter depending on wages; the engine uses 1/26.",
+   "min": 140,
+   "max": 869,
+   "da": null,
+   "disregard": "Up to 10 hrs of work as long as earnings at or below WBA Max",
+   "mbaText": "N/A (uniform duration)",
+   "bpwFrac": null,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "NC",
+   "name": "North Carolina",
+   "qual": "6 x AWW; wages in 2 qtrs of BP",
+   "comp": "Last 2 qtrs of BP/52 (must be at least 6 x AWW in last two qtrs of BP to establish a WBA)",
+   "alts": [
+    {
+     "base": "sum2",
+     "mult": 0.0192308
+    }
+   ],
+   "approx": "North Carolina uses the last two quarters of the base period, not the two highest; the engine uses the two highest you enter.",
+   "min": 15,
+   "max": 350,
+   "da": null,
+   "disregard": "20% WBA",
+   "mbaText": "12 x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    12,
+    20
+   ],
+   "idx": true,
+   "weeksCap": 12
+  },
+  {
+   "code": "ND",
+   "name": "North Dakota",
+   "qual": "1½ x HQW; wages in 2 qtrs",
+   "comp": "1/65 of wages in 2 HQs + 1/2 wages in 3rd HQ",
+   "alts": [
+    {
+     "base": "nd",
+     "mult": 0.0153846
+    }
+   ],
+   "min": 43,
+   "max": 815,
+   "da": null,
+   "disregard": "60% WBA",
+   "mbaText": "Weighted schedule of BPW to HQW for # of weeks x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    12,
+    26
+   ],
+   "sched": true
+  },
+  {
+   "code": "OH",
+   "name": "Ohio",
+   "qual": "20 weeks employment with wages averaging 27.5% of State AWW; wages in 2 qtrs",
+   "comp": "1/2 claimant's AWW + DA of $1 - $218 based on claimant's AWW and number of dep",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.0096154
+    }
+   ],
+   "approx": "Ohio averages pay over the weeks actually worked; the engine assumes 52 weeks of work.",
+   "min": 176,
+   "max": 624,
+   "da": [
+    176,
+    842
+   ],
+   "disregard": "1/5 WBA",
+   "mbaText": "20 x WBA + 1 x WBA for each qualifying week in excess of 20",
+   "bpwFrac": null,
+   "weeks": [
+    20,
+    26
+   ]
+  },
+  {
+   "code": "OK",
+   "name": "Oklahoma",
+   "qual": "$1,500 and 1½ x HQW or any taxable wages if total wages equal or exceed TWB for year claim was effective",
+   "comp": "1/23 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0434783
+    }
+   ],
+   "min": 16,
+   "max": 649,
+   "da": null,
+   "disregard": "$100",
+   "mbaText": "16 x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    16,
+    16
+   ]
+  },
+  {
+   "code": "OR",
+   "name": "Oregon",
+   "qual": "BPW > $1,000 and BPW > 1½ x HQW; or 500 hours of employment in BP",
+   "comp": "1.25% BPW",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.0125
+    }
+   ],
+   "min": 211,
+   "max": 902,
+   "da": null,
+   "disregard": "Greater of 1/3 WBA or $168",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    1,
+    26
+   ]
+  },
+  {
+   "code": "PA",
+   "name": "Pennsylvania",
+   "qual": "$1,688 in HQ; $2,718 in BP; at least 37% of BPW outside HQ; 18 credit weeks in BP",
+   "comp": "(4% HQW + 2) x 0.98 + 2 DA; $5 for 1st dep; $3 for 2nd dep",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0392,
+     "add": 1.96
+    }
+   ],
+   "min": 68,
+   "max": 605,
+   "da": [
+    76,
+    613
+   ],
+   "disregard": "Greater of $21 or 30% WBA",
+   "mbaText": "Actual number of credit weeks in BP x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    18,
+    26
+   ]
+  },
+  {
+   "code": "RI",
+   "name": "Rhode Island",
+   "qual": "1½ x HQW; 200 x minimum hourly wage in 1 qtr and 400 x minimum hourly wage in BP; or 1,200 x minimum hourly wage in BP",
+   "comp": "3.85% of avg high 2 qtrs in BP + greater of $15 or 5% of weekly benefit rate per dep, capped at the greater of $50 or 25% of WBA",
+   "alts": [
+    {
+     "base": "avg2",
+     "mult": 0.0385
+    }
+   ],
+   "min": 82,
+   "max": 777,
+   "da": [
+    132,
+    971
+   ],
+   "disregard": "1/2 WBA",
+   "mbaText": "Lesser of 33% BPW or 26 x WBA",
+   "bpwFrac": 0.33,
+   "weeks": [
+    17,
+    26
+   ]
+  },
+  {
+   "code": "SC",
+   "name": "South Carolina",
+   "qual": "1½ x HQW; $4,455 minimum; $1,092 in HQ",
+   "comp": "50% of HQ avg weekly wage",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 42,
+   "max": 350,
+   "da": null,
+   "disregard": "1/4 WBA",
+   "mbaText": "Lesser of 1/3 BPW or 20 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    13,
+    20
+   ]
+  },
+  {
+   "code": "SD",
+   "name": "South Dakota",
+   "qual": "$728 in HQ; 20 x WBA outside HQ",
+   "comp": "1/26 HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 28,
+   "max": 575,
+   "da": null,
+   "disregard": "1/4 wages over $25",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    15,
+    26
+   ]
+  },
+  {
+   "code": "TN",
+   "name": "Tennessee",
+   "qual": "40 x WBA; $780.01 avg wages in highest 2 qtrs; BPW outside HQW > the lesser of 6 x WBA or $900",
+   "comp": "1/26 of avg wages paid in 2 highest qtrs",
+   "alts": [
+    {
+     "base": "avg2",
+     "mult": 0.0384615
+    }
+   ],
+   "min": 55,
+   "max": 325,
+   "da": null,
+   "disregard": "Greater of $50 or 25% WBA",
+   "mbaText": "12-20 (indexing rate) x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    12,
+    20
+   ],
+   "idx": true
+  },
+  {
+   "code": "TX",
+   "name": "Texas",
+   "qual": "37 x WBA; wages in at least 2 qtrs",
+   "comp": "1/25 HQW, capped at 47.6% of AWW in covered employment in TX, calculated annually",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.04
+    }
+   ],
+   "min": 75,
+   "max": 605,
+   "da": null,
+   "disregard": "Greater of $5 or 1/4 WBA",
+   "mbaText": "Lesser of 27% BPW or 26 x WBA",
+   "bpwFrac": 0.27,
+   "weeks": [
+    10,
+    26
+   ]
+  },
+  {
+   "code": "UT",
+   "name": "Utah",
+   "qual": "$5,500 in BP and 1½ x HQW",
+   "comp": "1/26 HQW minus $5",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.0384615,
+     "add": -5
+    }
+   ],
+   "min": 47,
+   "max": 806,
+   "da": null,
+   "disregard": "30% WBA",
+   "mbaText": "27% BPW",
+   "bpwFrac": 0.27,
+   "weeks": [
+    10,
+    26
+   ]
+  },
+  {
+   "code": "VT",
+   "name": "Vermont",
+   "qual": "1.4 x HQW and $3,832 in HQ",
+   "comp": "Wages in the 2 highest qtrs divided by 45",
+   "alts": [
+    {
+     "base": "sum2",
+     "mult": 0.0222222
+    }
+   ],
+   "min": 96,
+   "max": 751,
+   "da": null,
+   "disregard": "50% of gross wages",
+   "mbaText": "Lesser of 46% BPW or 26 x WBA",
+   "bpwFrac": 0.46,
+   "weeks": [
+    23,
+    26
+   ]
+  },
+  {
+   "code": "VA",
+   "name": "Virginia",
+   "qual": "$3,000 in highest 2 qtrs of BP",
+   "comp": "Listed in Statute Tables",
+   "table": true,
+   "min": 160,
+   "max": 478,
+   "da": null,
+   "disregard": "$100",
+   "mbaText": "Weighted schedule of 2 highest qtrs to WBA for # weeks x WBA",
+   "bpwFrac": null,
+   "weeks": [
+    12,
+    26
+   ],
+   "sched": true
+  },
+  {
+   "code": "WA",
+   "name": "Washington",
+   "qual": "680 hours; wages in BP or alternate BP",
+   "comp": "Lesser of 3.85% of avg of high 2 qtrs in BP or Individual Weekly Wage",
+   "alts": [
+    {
+     "base": "avg2",
+     "mult": 0.0385
+    }
+   ],
+   "min": 383,
+   "max": 1208,
+   "da": null,
+   "disregard": "1/4 of wages over $5",
+   "mbaText": "Lesser of 1/3 BPW or 26 x WBA",
+   "bpwFrac": 0.333333,
+   "weeks": [
+    1,
+    26
+   ],
+   "src": "esd_2026"
+  },
+  {
+   "code": "WV",
+   "name": "West Virginia",
+   "qual": "$2,200 and wages in 2 qtrs",
+   "comp": "55% of 1/52 of median wages in worker's wage class",
+   "alts": [
+    {
+     "base": "bpw",
+     "mult": 0.0105769
+    }
+   ],
+   "approx": "West Virginia uses the median wage of your wage class in a statutory table; the engine uses 55% of your own weekly average.",
+   "min": 24,
+   "max": 662,
+   "da": null,
+   "disregard": "$60",
+   "mbaText": "N/A (uniform duration)",
+   "bpwFrac": null,
+   "weeks": [
+    26,
+    26
+   ]
+  },
+  {
+   "code": "WI",
+   "name": "Wisconsin",
+   "qual": "35 x WBA, HQ >$1,350 and 4 x WBA outside HQ",
+   "comp": "4% HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.04
+    }
+   ],
+   "min": 54,
+   "max": 370,
+   "da": null,
+   "disregard": "$30 + 33% of wages in excess of $30",
+   "mbaText": "Lesser of 40% of BPW or 26 x WBA",
+   "bpwFrac": 0.4,
+   "weeks": [
+    14,
+    26
+   ]
+  },
+  {
+   "code": "WY",
+   "name": "Wyoming",
+   "qual": "1.4 x HQW; at least 8% of statewide AAW",
+   "comp": "4% HQW",
+   "alts": [
+    {
+     "base": "hq",
+     "mult": 0.04
+    }
+   ],
+   "min": 48,
+   "max": 671,
+   "da": null,
+   "disregard": "50% WBA",
+   "mbaText": "Lesser of 30% BPW or 26 x WBA",
+   "bpwFrac": 0.3,
+   "weeks": [
+    11,
+    26
+   ]
+  }
+ ],
+ "retrieved": "2026-10-20"
+}

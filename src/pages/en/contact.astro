@@ -1,0 +1,24 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { route } from '../../i18n/routes';
+import { CONTACT_EMAIL } from '../../data/site-config';
+import { contactPageSchema } from '../../lib/seo';
+const lang = 'en';
+const path = route('contact', lang);
+const description = 'Write to Leave Pay by State about a weekly cap, a formula or a program start date that changed. E-mail only: no claim filed, nothing passed on to anyone.';
+---
+<PageLayout title="Contact Leave Pay by State: report a cap or a rule that moved" description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Contact', description, path, lang })]} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <article class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Contact</h1>
+    <p>By e-mail: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. There is no form and no phone line, and nothing you write is passed on.</p>
+    <h2>What helps us most</h2>
+    <ul>
+      <li>A state that announced a new weekly maximum or minimum: name the program and the agency page, with its effective date.</li>
+      <li>A formula we read wrong: quote the statute or the agency page that says otherwise.</li>
+      <li>A program that changed its weeks, its waiting period or its premium.</li>
+      <li>Embedding the calculator on an HR, union, library or legal aid page: the code is on the <a href={route('widget', lang)}>embed page</a>.</li>
+    </ul>
+    <h2>What we cannot do</h2>
+    <p>We do not file claims, read your wage records, appeal a decision or tell you whether you qualify. For your own claim, the state agency named on each page of this site is the only one that decides.</p>
+  </article>
+</PageLayout>

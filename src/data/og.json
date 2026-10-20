@@ -1,0 +1,13 @@
+{
+ "accent": "#1F5A3D",
+ "symbol": "PAY",
+ "variants": [
+  {
+   "file": "og-en.png",
+   "title": "Unemployment, disability and paid leave\nhow much a week, in your state",
+   "subtitle": "51 unemployment formulas · 14 paid leave and disability programs · tax",
+   "badge": "State law and DOL tables, 2026",
+   "brand": "Leave Pay by State"
+  }
+ ]
+}

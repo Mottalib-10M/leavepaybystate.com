@@ -1,0 +1,805 @@
+{
+ "_doc": "State temporary disability (TDI/SDI) and paid family and medical leave (PFML) programs, read on the agency pages and statutes on 2026-10-20 (quotes in notes/releve-conges-*.md). aww: how the engine turns the reader's pay into the program's average weekly wage (base hq = highest quarter, sum2 = two highest quarters, bpw = pay over the base year; div = divisor); exact = the agency's own definition, otherwise awwNote says what is simplified. tiers: [[up to this weekly wage, replacement rate], ...], the last with null. floor: a flat amount the benefit cannot fall under above the first tier (California). weeks: maximum weeks by reason; waiting: unpaid days before benefits by reason, only where read on an official page. contrib: employee share of the 2026 premium (rate on wages up to cap; cap null = no ceiling; weeklyMax = cap per week). status coming = no benefit paid on 2026-10-20. mode band (California): the whole weekly wage is replaced at the rate of its band, not tier by tier.",
+ "programs": [
+  {
+   "id": "ca-sdi",
+   "state": "CA",
+   "name": "California State Disability Insurance (DI)",
+   "short": "SDI",
+   "kind": "medical",
+   "status": "paying",
+   "aww": {
+    "base": "hq",
+    "div": 13,
+    "exact": true
+   },
+   "tiers": [
+    [
+     1252.3,
+     0.9
+    ],
+    [
+     null,
+     0.7
+    ]
+   ],
+   "floor": 1127,
+   "max": 1765,
+   "min": 50,
+   "weeks": {
+    "medical": 52
+   },
+   "waiting": {
+    "medical": 7
+   },
+   "contrib": {
+    "rate": 0.013,
+    "cap": null,
+    "covers": "DI and PFL"
+   },
+   "rule": "90% of high-quarter wages ÷ 13 when the high quarter is $16,279.90 or less; above that, the greater of 70% of high-quarter wages ÷ 13 or $1,127; between $50 and $1,765 a week",
+   "sources": [
+    "edd_di",
+    "edd_forecast",
+    "edd_rates",
+    "edd_wait"
+   ],
+   "calculator": "https://edd.ca.gov/en/disability/PFL_Calculator/",
+   "mode": "band"
+  },
+  {
+   "id": "ca-pfl",
+   "state": "CA",
+   "name": "California Paid Family Leave (PFL)",
+   "short": "PFL",
+   "kind": "family",
+   "status": "paying",
+   "aww": {
+    "base": "hq",
+    "div": 13,
+    "exact": true
+   },
+   "tiers": [
+    [
+     1252.3,
+     0.9
+    ],
+    [
+     null,
+     0.7
+    ]
+   ],
+   "floor": 1127,
+   "max": 1765,
+   "min": 50,
+   "weeks": {
+    "bonding": 8,
+    "care": 8
+   },
+   "waiting": {
+    "bonding": 0,
+    "care": 0
+   },
+   "contrib": {
+    "rate": 0,
+    "cap": null,
+    "covers": "included in the SDI rate"
+   },
+   "rule": "same table as SDI: 90% or 70% of high-quarter wages ÷ 13, between $50 and $1,765 a week, up to 8 weeks in 12 months",
+   "sources": [
+    "edd_pfl",
+    "edd_integration"
+   ],
+   "calculator": "https://edd.ca.gov/en/disability/PFL_Calculator/",
+   "mode": "band"
+  },
+  {
+   "id": "ny-dbl",
+   "state": "NY",
+   "name": "New York Disability Benefits Law (DBL)",
+   "short": "DBL",
+   "kind": "medical",
+   "status": "paying",
+   "aww": {
+    "base": "bpw",
+    "div": 52,
+    "exact": false
+   },
+   "awwNote": "New York averages the last eight weeks worked; the engine uses your regular weekly pay.",
+   "tiers": [
+    [
+     null,
+     0.5
+    ]
+   ],
+   "max": 170,
+   "min": 0,
+   "weeks": {
+    "medical": 26
+   },
+   "waiting": {
+    "medical": 7
+   },
+   "contrib": {
+    "rate": 0.005,
+    "cap": null,
+    "weeklyMax": 0.6
+   },
+   "rule": "50% of the average weekly wage of the last eight weeks, no more than $170 a week, for up to 26 weeks",
+   "sources": [
+    "wcb_dbl",
+    "wcb_dbl_employer"
+   ],
+   "calculator": null
+  },
+  {
+   "id": "ny-pfl",
+   "state": "NY",
+   "name": "New York Paid Family Leave",
+   "short": "PFL",
+   "kind": "family",
+   "status": "paying",
+   "aww": {
+    "base": "bpw",
+    "div": 52,
+    "exact": false
+   },
+   "awwNote": "New York averages the last eight weeks worked; the engine uses your regular weekly pay.",
+   "tiers": [
+    [
+     null,
+     0.67
+    ]
+   ],
+   "max": 1228.53,
+   "min": 100,
+   "weeks": {
+    "bonding": 12,
+    "care": 12
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0.00432,
+    "cap": 95349.54
+   },
+   "rule": "67% of the average weekly wage, up to 67% of the 2026 state average weekly wage of $1,833.63, so at most $1,228.53 a week",
+   "sources": [
+    "nypfl_2026",
+    "nypfl_benefits"
+   ],
+   "calculator": "https://paidfamilyleave.ny.gov/PFLbenefitscalculator"
+  },
+  {
+   "id": "nj-tdi",
+   "state": "NJ",
+   "name": "New Jersey Temporary Disability Insurance",
+   "short": "TDI",
+   "kind": "medical",
+   "status": "paying",
+   "aww": {
+    "base": "bpw",
+    "div": 52,
+    "exact": false
+   },
+   "awwNote": "New Jersey averages the weeks worked in the base year; the engine assumes a full year of work.",
+   "tiers": [
+    [
+     null,
+     0.85
+    ]
+   ],
+   "max": 1119,
+   "min": 0,
+   "weeks": {
+    "medical": 26
+   },
+   "waiting": {
+    "medical": 7
+   },
+   "contrib": {
+    "rate": 0.0019,
+    "cap": 171100
+   },
+   "rule": "85% of the average weekly wage, up to $1,119 a week in 2026, for up to 26 weeks",
+   "sources": [
+    "nj_tdi",
+    "nj_wait",
+    "nj_ui_2026"
+   ],
+   "calculator": null
+  },
+  {
+   "id": "nj-fli",
+   "state": "NJ",
+   "name": "New Jersey Family Leave Insurance",
+   "short": "FLI",
+   "kind": "family",
+   "status": "paying",
+   "aww": {
+    "base": "bpw",
+    "div": 52,
+    "exact": false
+   },
+   "awwNote": "New Jersey averages the weeks worked in the base year; the engine assumes a full year of work.",
+   "tiers": [
+    [
+     null,
+     0.85
+    ]
+   ],
+   "max": 1119,
+   "min": 0,
+   "weeks": {
+    "bonding": 12,
+    "care": 12
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0.0023,
+    "cap": 171100
+   },
+   "rule": "85% of the average weekly wage, up to $1,119 a week in 2026, for 12 consecutive weeks or 8 weeks taken intermittently",
+   "sources": [
+    "nj_fli"
+   ],
+   "calculator": null
+  },
+  {
+   "id": "ri-tdi",
+   "state": "RI",
+   "name": "Rhode Island Temporary Disability Insurance",
+   "short": "TDI",
+   "kind": "medical",
+   "status": "paying",
+   "aww": {
+    "base": "hq",
+    "div": 1,
+    "exact": true
+   },
+   "tiers": [
+    [
+     null,
+     0.0462
+    ]
+   ],
+   "max": 1150,
+   "min": 148,
+   "minNote": "$148 is the minimum read for claims from January 2026; the July 2026 minimum was not found.",
+   "weeks": {
+    "medical": 30
+   },
+   "waiting": {
+    "medical": 7
+   },
+   "contrib": {
+    "rate": 0.011,
+    "cap": 100000,
+    "covers": "TDI and TCI"
+   },
+   "rule": "4.62% of the wages of the highest quarter of the base period, up to $1,150 a week for claims from July 1, 2026 ($1,552 with five dependents)",
+   "sources": [
+    "ri_statute",
+    "ri_faq",
+    "ri_press",
+    "ri_tax"
+   ],
+   "calculator": null
+  },
+  {
+   "id": "ri-tci",
+   "state": "RI",
+   "name": "Rhode Island Temporary Caregiver Insurance",
+   "short": "TCI",
+   "kind": "family",
+   "status": "paying",
+   "aww": {
+    "base": "hq",
+    "div": 1,
+    "exact": true
+   },
+   "tiers": [
+    [
+     null,
+     0.0462
+    ]
+   ],
+   "max": 1150,
+   "min": 148,
+   "minNote": "$148 is the minimum read for claims from January 2026; the July 2026 minimum was not found.",
+   "weeks": {
+    "bonding": 8,
+    "care": 8
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0,
+    "cap": null,
+    "covers": "included in the TDI rate"
+   },
+   "rule": "same rate as TDI, up to 8 weeks, counted within the 30 weeks of the benefit year",
+   "sources": [
+    "ri_faq",
+    "ri_press"
+   ],
+   "calculator": null
+  },
+  {
+   "id": "hi-tdi",
+   "state": "HI",
+   "name": "Hawaii Temporary Disability Insurance",
+   "short": "TDI",
+   "kind": "medical",
+   "status": "paying",
+   "aww": {
+    "base": "bpw",
+    "div": 52,
+    "exact": false
+   },
+   "awwNote": "Hawaii averages the weeks of employment before the disability; the engine uses your regular weekly pay.",
+   "tiers": [
+    [
+     null,
+     0.58
+    ]
+   ],
+   "max": 871,
+   "min": 0,
+   "weeks": {
+    "medical": 26
+   },
+   "waiting": {
+    "medical": 7
+   },
+   "contrib": {
+    "rate": 0.005,
+    "cap": null,
+    "weeklyMax": 7.5
+   },
+   "rule": "58% of the average weekly wage, up to $871 a week in 2026, from the eighth day, for up to 26 weeks",
+   "sources": [
+    "hi_tdi",
+    "hi_2026"
+   ],
+   "calculator": null
+  },
+  {
+   "id": "wa-pfml",
+   "state": "WA",
+   "name": "Washington Paid Family and Medical Leave",
+   "short": "PFML",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "sum2",
+    "div": 26,
+    "exact": false
+   },
+   "awwNote": "The engine averages your two highest quarters, the method Washington uses for most workers.",
+   "tiers": [
+    [
+     915,
+     0.9
+    ],
+    [
+     null,
+     0.5
+    ]
+   ],
+   "max": 1647,
+   "min": 100,
+   "weeks": {
+    "medical": 12,
+    "bonding": 12,
+    "care": 12,
+    "combined": 16,
+    "pregnancy": 18
+   },
+   "waiting": {
+    "medical": 7,
+    "care": 7,
+    "bonding": 0
+   },
+   "contrib": {
+    "rate": 0.008072,
+    "cap": 184500,
+    "note": "71.43% of the 1.13% premium"
+   },
+   "rule": "90% of the weekly wage up to half the state average weekly wage, plus 50% of the part above, up to $1,647 a week in 2026",
+   "sources": [
+    "wa_rcw",
+    "wa_how",
+    "wa_premium",
+    "esd_2026"
+   ],
+   "calculator": "https://paidleave.wa.gov/estimate-your-weekly-pay/"
+  },
+  {
+   "id": "ma-pfml",
+   "state": "MA",
+   "name": "Massachusetts Paid Family and Medical Leave",
+   "short": "PFML",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "sum2",
+    "div": 26,
+    "exact": false
+   },
+   "awwNote": "The engine averages your two highest quarters, the individual average weekly wage Massachusetts describes.",
+   "tiers": [
+    [
+     961.24,
+     0.8
+    ],
+    [
+     null,
+     0.5
+    ]
+   ],
+   "max": 1230.39,
+   "min": 0,
+   "weeks": {
+    "medical": 20,
+    "bonding": 12,
+    "care": 12,
+    "combined": 26
+   },
+   "waiting": {
+    "medical": 7,
+    "bonding": 7,
+    "care": 7
+   },
+   "contrib": {
+    "rate": 0.0046,
+    "cap": null,
+    "note": "the most an employer may deduct; wage cap not modeled"
+   },
+   "rule": "80% of the weekly wage up to half the 2026 state average weekly wage of $1,922.48, plus 50% above, up to $1,230.39 a week",
+   "sources": [
+    "ma_pfml",
+    "ma_rates"
+   ],
+   "calculator": "https://calculator.digital.mass.gov/pfml/yourbenefits/"
+  },
+  {
+   "id": "ct-pl",
+   "state": "CT",
+   "name": "Connecticut Paid Leave",
+   "short": "CT Paid Leave",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "sum2",
+    "div": 26,
+    "exact": false
+   },
+   "awwNote": "The engine averages your two highest quarters.",
+   "tiers": [
+    [
+     677.6,
+     0.95
+    ],
+    [
+     null,
+     0.6
+    ]
+   ],
+   "max": 1016.4,
+   "min": 0,
+   "weeks": {
+    "medical": 12,
+    "bonding": 12,
+    "care": 12,
+    "pregnancy": 14
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0.005,
+    "cap": 184500
+   },
+   "rule": "95% of the weekly wage up to 40 times the Connecticut minimum wage ($677.60), plus 60% above, capped at 60 times the minimum wage ($1,016.40)",
+   "sources": [
+    "ct_apply",
+    "ct_how",
+    "ct_contrib"
+   ],
+   "calculator": null
+  },
+  {
+   "id": "or-pl",
+   "state": "OR",
+   "name": "Paid Leave Oregon",
+   "short": "Paid Leave Oregon",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "bpw",
+    "div": 52,
+    "exact": false
+   },
+   "awwNote": "The engine divides your base-year pay by 52.",
+   "tiers": [
+    [
+     916.58,
+     1.0
+    ],
+    [
+     null,
+     0.5
+    ]
+   ],
+   "max": 1692.16,
+   "min": 70.51,
+   "weeks": {
+    "medical": 12,
+    "bonding": 12,
+    "care": 12,
+    "pregnancy": 14
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0.006,
+    "cap": 184500
+   },
+   "rule": "100% of the weekly wage up to 65% of the state average weekly wage ($1,410.13), plus 50% above, between $70.51 and $1,692.16 a week for benefit years from June 28, 2026",
+   "sources": [
+    "or_news",
+    "or_employers",
+    "or_memo",
+    "or_faq"
+   ],
+   "calculator": null
+  },
+  {
+   "id": "co-famli",
+   "state": "CO",
+   "name": "Colorado Paid Family and Medical Leave Insurance (FAMLI)",
+   "short": "FAMLI",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "sum2",
+    "div": 26,
+    "exact": false
+   },
+   "awwNote": "The engine averages your two highest quarters.",
+   "tiers": [
+    [
+     804.46,
+     0.9
+    ],
+    [
+     null,
+     0.5
+    ]
+   ],
+   "max": 1448.02,
+   "min": 0,
+   "weeks": {
+    "medical": 12,
+    "bonding": 12,
+    "care": 12,
+    "pregnancy": 16
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0.0044,
+    "cap": 184500
+   },
+   "rule": "90% of the weekly wage up to $804.46, plus 50% above, up to $1,448.02 a week from July 1, 2026",
+   "sources": [
+    "co_rules",
+    "co_calc",
+    "co_faq"
+   ],
+   "calculator": "https://famli.colorado.gov/individuals-and-families/how-famli-works/premium-and-benefits-calculator"
+  },
+  {
+   "id": "mn-pl",
+   "state": "MN",
+   "name": "Minnesota Paid Leave",
+   "short": "Minnesota Paid Leave",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "hq",
+    "div": 13,
+    "exact": false
+   },
+   "awwNote": "The engine divides your highest quarter by 13.",
+   "tiers": [
+    [
+     711.5,
+     0.9
+    ],
+    [
+     1423,
+     0.66
+    ],
+    [
+     null,
+     0.55
+    ]
+   ],
+   "max": 1423,
+   "min": 0,
+   "weeks": {
+    "medical": 12,
+    "bonding": 12,
+    "care": 12,
+    "combined": 20
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0.0044,
+    "cap": 184500
+   },
+   "rule": "90% of the first $711.50 of weekly wage, 66% of the next $711.50 and 55% above, up to $1,423 a week, since January 1, 2026",
+   "sources": [
+    "mn_statute",
+    "mn_poster",
+    "mn_mmb",
+    "mn_rate"
+   ],
+   "calculator": null,
+   "start": "2026-01-01"
+  },
+  {
+   "id": "de-pl",
+   "state": "DE",
+   "name": "Delaware Paid Leave",
+   "short": "Delaware Paid Leave",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "bpw",
+    "div": 52,
+    "exact": false
+   },
+   "awwNote": "The engine divides your yearly pay by 52.",
+   "tiers": [
+    [
+     null,
+     0.8
+    ]
+   ],
+   "max": 900,
+   "min": 0,
+   "weeks": {
+    "medical": 6,
+    "bonding": 12,
+    "care": 6,
+    "combined": 12
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0.004,
+    "cap": null,
+    "note": "at most half of the 0.8% premium"
+   },
+   "rule": "80% of the average weekly wage, up to $900 a week in 2026 and 2027, since January 1, 2026",
+   "sources": [
+    "de_code",
+    "de_labor",
+    "de_faq"
+   ],
+   "calculator": null,
+   "start": "2026-01-01"
+  },
+  {
+   "id": "me-pfml",
+   "state": "ME",
+   "name": "Maine Paid Family and Medical Leave",
+   "short": "Maine PFML",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "sum2",
+    "div": 26,
+    "exact": false
+   },
+   "awwNote": "The engine averages your two highest quarters.",
+   "tiers": [
+    [
+     624.56,
+     0.9
+    ],
+    [
+     null,
+     0.66
+    ]
+   ],
+   "max": 1249.12,
+   "min": 0,
+   "maxNote": "The law caps the benefit at the state average weekly wage, $1,249.12 from July 1, 2026; Maine's own chart rounds it to $1,250, and the cap at the May 2026 launch was $1,199.",
+   "weeks": {
+    "medical": 12,
+    "bonding": 12,
+    "care": 12
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0.005,
+    "cap": null,
+    "note": "at most half of the 1% premium"
+   },
+   "rule": "90% of the weekly wage up to half the state average weekly wage, plus 66% above, capped at the state average weekly wage, for leave from May 1, 2026",
+   "sources": [
+    "me_home",
+    "me_850c",
+    "me_850b",
+    "me_saww",
+    "me_faq"
+   ],
+   "calculator": null,
+   "start": "2026-05-01"
+  },
+  {
+   "id": "dc-pfl",
+   "state": "DC",
+   "name": "DC Paid Family Leave",
+   "short": "DC PFL",
+   "kind": "both",
+   "status": "paying",
+   "aww": {
+    "base": "bpw",
+    "div": 52,
+    "exact": false
+   },
+   "awwNote": "The engine divides your yearly pay by 52.",
+   "tiers": [
+    [
+     1104,
+     0.9
+    ],
+    [
+     null,
+     0.5
+    ]
+   ],
+   "max": 1100,
+   "min": 0,
+   "weeks": {
+    "medical": 10,
+    "bonding": 12,
+    "care": 6,
+    "prenatal": 2
+   },
+   "waiting": {},
+   "contrib": {
+    "rate": 0,
+    "cap": null,
+    "note": "employer-funded (0.75% of wages)"
+   },
+   "rule": "90% of the weekly wage up to 150% of 40 hours at the DC minimum wage ($1,104), plus 50% above, capped at $1,100 a week from October 1, 2026",
+   "sources": [
+    "dc_updates",
+    "dc_code",
+    "dc_calc",
+    "dc_fund"
+   ],
+   "calculator": "https://dcpaidfamilyleave.dc.gov/benefits-calculator/"
+  },
+  {
+   "id": "md-famli",
+   "state": "MD",
+   "name": "Maryland Family and Medical Leave Insurance (FAMLI)",
+   "short": "Maryland FAMLI",
+   "kind": "both",
+   "status": "coming",
+   "start": "2028-01-01",
+   "contribStart": "2027-01-01",
+   "weeks": {},
+   "waiting": {},
+   "contrib": {
+    "rate": 0,
+    "cap": null
+   },
+   "rule": "to come: contributions from January 1, 2027, benefits from January 1, 2028; weekly amounts not yet published",
+   "sources": [
+    "md_about"
+   ],
+   "calculator": null
+  }
+ ]
+}

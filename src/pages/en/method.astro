@@ -1,0 +1,46 @@
+---
+/** Method: the documents, how each formula is applied, a worked example, the limits. Figures from the kit. */
+import PageLayout from '../../layouts/PageLayout.astro';
+import { route } from '../../i18n/routes';
+import { KIT as K } from '../../lib/kit';
+import { src, table } from '../../lib/helpers';
+import { VALUE } from '../../content/home';
+import { breadcrumbSchema, webPageSchema } from '../../lib/seo';
+const lang = 'en';
+const path = route('method', lang);
+const title = 'Benefit Estimate Method 2026: State Formulas and Caps';
+const paying = K.PROGRAMS.filter((p) => p.status === 'paying');
+const description = `Benefit estimate method for 2026: ${K.STATES.length} unemployment formulas from the Labor Department table, ${paying.length} paid leave programs, federal tax, take-home pay and the limits.`;
+const approx = K.STATES.filter((s) => s.approx || s.table).map((s) => [s.name, s.table ? 'statutory wage table: range shown, no estimate' : s.approx!]);
+const awwRows = paying.map((p) => [p.name, p.aww?.exact ? 'as the agency defines it' : (p.awwNote ?? '')]);
+const ex = K.ui('TX', 60000, 18000, 16000);
+const exL = K.leave('wa-pfml', 60000, 'bonding', 12, 18000);
+const th = K.th('TX', 60000);
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: 'How the estimates are built', description, path, lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'How the estimates are built', path }])]} breadcrumbs={[{ label: 'How the estimates are built' }]}>
+  <article class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>How the estimates are built</h1>
+    <p><strong>Every estimate on this site applies the formula a state writes into its unemployment, disability or paid leave law to the pay you enter, then caps it with the weekly floor and ceiling in force in 2026, and divides nothing by guesswork: each rule is stored with the document it was read in, on {K.day(K.RETRIEVED)}.</strong></p>
+    <p>{VALUE}</p>
+    <h2>1. Unemployment: the Department of Labor table</h2>
+    <p>For all 50 states and the District of Columbia, the qualifying earnings, the weekly benefit formula, the minimum and maximum weekly amounts, the cap on total benefits and the number of weeks come from the table the U.S. Department of Labor publishes for state laws in force on July 1, 2026 (<Fragment set:html={src('dol_sigpros', 'Significant Provisions of State Unemployment Insurance Laws, July 2026')} />), the companion of its yearly Comparison of State UI Laws (<Fragment set:html={src('dol_statelaws', 'DOL state law page')} />). Where a state raised its cap after July 1, the state's own announcement replaces the table: Massachusetts ({K.usd(K.S('MA').max)} from October 4, 2026, <Fragment set:html={src('ma_ui', 'Massachusetts DUA')} />). New Jersey and Washington caps were checked against their 2026 announcements (<Fragment set:html={src('nj_ui_2026', 'New Jersey')} />, <Fragment set:html={src('esd_2026', 'Washington ESD')} />).</p>
+    <p>The engine reads each formula as a share of one of four wage bases: the best quarter, the average or the total of the two best quarters, or the pay of the whole base period. When a state offers two methods, as Colorado and Minnesota do, both are computed and the higher one is kept, each with its own cap. The weekly amount is rounded down to the dollar. The total is the lesser of the weeks the state allows times the weekly amount and the share of base-period pay the law sets as a ceiling. Where the number of weeks depends on the state's unemployment rate, the top of the range in the table is used and the range is shown.</p>
+    <Fragment set:html={table(['State', 'What is simplified'], approx, 'States whose formula the engine reproduces only in part. Everywhere else the formula of the table is applied as written, without dependents allowance.', ['l', 'l'])} />
+    <h2>2. Paid leave and disability: the agencies and the statutes</h2>
+    <p>Each program's replacement rates, thresholds, weekly maximum, durations and employee premium were read on the agency's page or in the statute, listed at the bottom of its page on this site. Programs that pay by tiers (Washington, Massachusetts, Oregon, Colorado, Connecticut, Minnesota, Maine, the District of Columbia) are computed tier by tier; California's disability and family leave are computed by band, as the Employment Development Department publishes them (<Fragment set:html={src('edd_di', 'EDD benefit table')} />). A program not yet paying, Maryland's, is shown with its start date and no amount.</p>
+    <Fragment set:html={table(['Program', 'Average weekly wage used'], awwRows, 'How the pay you enter becomes the program’s average weekly wage.', ['l', 'l'])} />
+    <h2>3. Tax and take-home pay</h2>
+    <p>Federal income tax uses the 2026 brackets and standard deduction of <Fragment set:html={src('irs_rp_2025_32', 'Revenue Procedure 2025-32')} />, with no credit and no other deduction. The tax on a benefit is the tax on your other income plus the benefit, minus the tax on your other income alone. Take-home pay deducts federal income tax, Social Security at {K.pct(K.FEDERAL.socialSecurityRate, 1)} up to {K.usd(K.FEDERAL.socialSecurityWageBase)}, Medicare at {K.pct(K.FEDERAL.medicareRate, 2)} (<Fragment set:html={src('irs_tc751', 'IRS Topic 751')} />) and the employee share of the state leave premium; state income tax is left out on both sides of the comparison. Unemployment and family leave are counted as taxable (<Fragment set:html={src('irs_tc418', 'IRS Topic 418')} />, <Fragment set:html={src('irs_rr_2025_4', 'Rev. Rul. 2025-4')} />); medical leave is shown as depending on who paid the premiums, because the ruling taxes only the part funded by the employer.</p>
+    <h2>4. Two worked examples</h2>
+    <p>Texas, {K.usd(60000)} earned over the base period, {K.usd(18000)} in the best quarter and {K.usd(16000)} in the second: the law pays one twenty-fifth of the best quarter, {K.usd(18000 / 25)}, capped at {K.usd(K.S('TX').max)}, so {K.usd(ex.weekly)} a week. The total is the lesser of 26 weeks and 27% of base-period wages, {K.usd(0.27 * 60000)}: {K.usd(ex.total)} over {K.dec(ex.weeks)} weeks. Take-home pay at that salary is about {K.usd(th.net)} a week.</p>
+    <p>Washington paid leave, same wages, twelve weeks to bond with a child: the average weekly wage is the two best quarters divided by 26, {K.usd(exL.aww)}; 90% of the first {K.usd(915)} and half of the rest gives {K.usd(exL.weekly)} a week, {K.usd(exL.total)} for the twelve weeks, with no waiting week for bonding.</p>
+    <h2>5. Limits</h2>
+    <ul>
+      <li>The agency uses the wages your employers reported for its base period, usually the first four of the last five completed calendar quarters; an alternate base period can apply when that one does not qualify you.</li>
+      <li>Dependents allowances, paid in about a dozen states, are listed but not added.</li>
+      <li>Qualifying rules other than the minimum weekly amount (hours, wages outside the best quarter, the reason you left) are shown as text and not tested.</li>
+      <li>Nothing here is legal or tax advice; the agency decides your claim.</li>
+    </ul>
+    <p>Corrections: <a href={route('contact', lang)}>contact page</a>.</p>
+  </article>
+</PageLayout>
