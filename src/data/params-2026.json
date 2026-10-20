@@ -27,6 +27,7 @@
   "WA": { "status": "none", "source": "wa_dor" },
   "SD": { "status": "none", "source": "sd_dor" }
  },
+ "rr2025_4": { "_doc": "Rev. Rul. 2025-4 (source irs_rr_2025_4): effective for payments made on or after January 1, 2025; calendar year 2025 is a transition period.", "effectiveFrom": "2025-01-01", "transitionYear": 2025 },
  "sources": {
   "dol_sigpros": { "url": "https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/July2026.pdf", "label": { "en": "U.S. Department of Labor, Significant Provisions of State Unemployment Insurance Laws, effective July 2026" } },
   "dol_sigpros_jan": { "url": "https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/January2026.pdf", "label": { "en": "U.S. Department of Labor, Significant Provisions of State Unemployment Insurance Laws, effective January 2026" } },

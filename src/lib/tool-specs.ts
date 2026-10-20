@@ -211,7 +211,11 @@ const SPECS: Record<string, (arg?: Record<string, number | string>) => ToolSpec>
       const m = med ? leave(med, w, 'medical', mw) : null;
       const b = bond ? leave(bond, w, 'bonding', bond.weeks.bonding ?? 0) : null;
       let bw = b ? b.weeks : 0, bt = b ? b.total : 0;
-      if (b && med && bond && med.id === bond.id && bond.weeks.combined) { bw = Math.max(0, Math.min(bw, bond.weeks.combined - (m?.weeks ?? 0))); bt = Math.round(b.weekly * bw); }
+      // One program for both reasons: the weeks of all reasons share one limit (stated combined limit; Oregon's
+      // pregnancy limit applies to any birth; otherwise the program's 12 weeks in all, except DC, whose rule was not read).
+      const lim = b && med && bond && med.id === bond.id && bond.id !== 'dc-pfl'
+        ? (bond.id === 'or-pl' ? bond.weeks.pregnancy : bond.weeks.combined ?? Math.max(bond.weeks.medical ?? 0, bond.weeks.bonding ?? 0)) : undefined;
+      if (b && lim) { bw = Math.max(0, Math.min(bw, lim - (m?.weeks ?? 0))); bt = Math.round(b.weekly * bw); }
       const total = (m?.total ?? 0) + bt;
       return {
         label: `Paid time off for a birth in ${name}`, value: usd(total), sub: `${wk((m?.weeks ?? 0) + bw)} paid in all`,
@@ -220,7 +224,7 @@ const SPECS: Record<string, (arg?: Record<string, number | string>) => ToolSpec>
           [b ? `${bond!.short}: bonding, ${wk(bw)}` : 'Bonding with the baby', b ? usd(bt) : 'no state program', bt],
           ['Weekly benefit', m ? usd(m.weekly) : b ? usd(b.weekly) : '$0'],
         ],
-        note: med && bond && med.id === bond.id && bond.weeks.combined ? `${bond.short} caps medical and family leave together at ${bond.weeks.combined} weeks a year${bond.weeks.pregnancy ? ` (${bond.weeks.pregnancy} with a pregnancy complication)` : ''}.` : 'Disability pay for the birth and family leave for bonding come from two programs here, each with its own maximum.',
+        note: lim ? `${bond!.short} caps medical and family leave together at ${lim} weeks a year${bond!.weeks.pregnancy && bond!.weeks.pregnancy > lim ? ` (${bond!.weeks.pregnancy} with a pregnancy complication)` : ''}.` : med && bond && med.id === bond.id ? `${bond.short} pays both; how its leave types combine around a birth is not computed, so the total assumes both apply.` : 'Disability pay for the birth and family leave for bonding come from two programs here, each with its own maximum.',
       };
     },
   }),

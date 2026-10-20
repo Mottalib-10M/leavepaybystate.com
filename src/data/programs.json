@@ -45,7 +45,19 @@
     "edd_wait"
    ],
    "calculator": "https://edd.ca.gov/en/disability/PFL_Calculator/",
-   "mode": "band"
+   "mode": "band",
+   "facts": {
+    "minBasePeriodWages": 300,
+    "lowBandQuarterTop": 722.49,
+    "rate90QuarterFrom": 722.5,
+    "flatBandQuarterFrom": 16279.91,
+    "flatBandQuarterTo": 20931.3,
+    "rate70QuarterFrom": 20931.31,
+    "max2024": 1620,
+    "max2025": 1681,
+    "sawwShareFloor": 0.63,
+    "allWagesSubjectSince": "2024-01-01"
+   }
   },
   {
    "id": "ca-pfl",
@@ -91,7 +103,10 @@
     "edd_integration"
    ],
    "calculator": "https://edd.ca.gov/en/disability/PFL_Calculator/",
-   "mode": "band"
+   "mode": "band",
+   "facts": {
+    "monthsWindow": 12
+   }
   },
   {
    "id": "ny-dbl",
@@ -130,7 +145,11 @@
     "wcb_dbl",
     "wcb_dbl_employer"
    ],
-   "calculator": null
+   "calculator": null,
+   "facts": {
+    "periodWeeks": 52,
+    "averagedWeeks": 8
+   }
   },
   {
    "id": "ny-pfl",
@@ -167,7 +186,11 @@
     "nypfl_2026",
     "nypfl_benefits"
    ],
-   "calculator": "https://paidfamilyleave.ny.gov/PFLbenefitscalculator"
+   "calculator": "https://paidfamilyleave.ny.gov/PFLbenefitscalculator",
+   "facts": {
+    "nysaww": 1833.63,
+    "maxAnnualContrib2026": 411.91
+   }
   },
   {
    "id": "nj-tdi",
@@ -206,7 +229,15 @@
     "nj_wait",
     "nj_ui_2026"
    ],
-   "calculator": null
+   "calculator": null,
+   "facts": {
+    "maxAnnualContrib2026": 325.09,
+    "eligWeeks": 20,
+    "eligWeeklyEarnings": 310,
+    "eligBaseYearTotal": 15500,
+    "waitingPaidIfLeaveDays": 22,
+    "max2025": 1081
+   }
   },
   {
    "id": "nj-fli",
@@ -242,7 +273,14 @@
    "sources": [
     "nj_fli"
    ],
-   "calculator": null
+   "calculator": null,
+   "facts": {
+    "maxAnnualContrib2026": 393.53,
+    "consecutiveDays": 84,
+    "intermittentWeeks": 8,
+    "intermittentDays": 56,
+    "max2025": 1081
+   }
   },
   {
    "id": "ri-tdi",
@@ -283,7 +321,23 @@
     "ri_press",
     "ri_tax"
    ],
-   "calculator": null
+   "calculator": null,
+   "facts": {
+    "maxFirstHalf2026": 1103,
+    "maxDependentsFirstHalf2026": 1489,
+    "maxDependents": 1552,
+    "maxFrom": "2026-07-01",
+    "eligBasePeriodWages": 19200,
+    "maxAnnualContrib2026": 1100,
+    "dependentAllowanceMin": 20,
+    "dependentAllowanceShare": 0.07,
+    "dependentsMax": 5,
+    "maxShareOfSaww": 0.85,
+    "tciWeeks": 8,
+    "minFrom": "2026-01-01",
+    "durationShareOfWages": 0.36,
+    "contribRate2025": 0.013
+   }
   },
   {
    "id": "ri-tci",
@@ -360,7 +414,12 @@
     "hi_tdi",
     "hi_2026"
    ],
-   "calculator": null
+   "calculator": null,
+   "facts": {
+    "maxWeeklyWageBase2026": 1500.21,
+    "smallWageLimit": 26,
+    "smallWageBenefitMax": 14
+   }
   },
   {
    "id": "wa-pfml",
@@ -411,7 +470,15 @@
     "wa_premium",
     "esd_2026"
    ],
-   "calculator": "https://paidleave.wa.gov/estimate-your-weekly-pay/"
+   "calculator": "https://paidleave.wa.gov/estimate-your-weekly-pay/",
+   "facts": {
+    "max2027": 1727,
+    "max2027From": "2027-01-01",
+    "premiumTotal": 0.0113,
+    "employeeSharePremium": 0.7143,
+    "employerSharePremium": 0.2857,
+    "employerSizeShare": 50
+   }
   },
   {
    "id": "ma-pfml",
@@ -459,7 +526,17 @@
     "ma_pfml",
     "ma_rates"
    ],
-   "calculator": "https://calculator.digital.mass.gov/pfml/yourbenefits/"
+   "calculator": "https://calculator.digital.mass.gov/pfml/yourbenefits/",
+   "facts": {
+    "saww": 1922.48,
+    "maxShareOfSaww": 0.64,
+    "contribTotal": 0.0088,
+    "familyContrib": 0.0018,
+    "medicalContrib": 0.007,
+    "employeeMedicalDeduction": 0.0028,
+    "employeeMedicalShare": 0.4,
+    "rateSheetEmployerSize": 25
+   }
   },
   {
    "id": "ct-pl",
@@ -503,7 +580,15 @@
     "ct_how",
     "ct_contrib"
    ],
-   "calculator": null
+   "calculator": null,
+   "facts": {
+    "minWage": 16.94,
+    "max2025": 981,
+    "tierMultiple": 40,
+    "capMultiple": 60,
+    "pregnancyExtraWeeks": 2,
+    "thresholdsAsOf": "2026-01-01"
+   }
   },
   {
    "id": "or-pl",
@@ -548,7 +633,23 @@
     "or_memo",
     "or_faq"
    ],
-   "calculator": null
+   "calculator": null,
+   "facts": {
+    "saww": 1410.13,
+    "sawwPrev": 1363.8,
+    "maxPrev": 1636.56,
+    "minPrev": 68.19,
+    "benefitYearsFrom": "2026-06-28",
+    "premiumTotal": 0.01,
+    "employeeShare": 0.6,
+    "employerShare": 0.4,
+    "employerSize": 25,
+    "maxShareOfSaww": 1.2,
+    "minShareOfSaww": 0.05,
+    "extraPregnancyWeeks": 2,
+    "tierShareOfSaww": 0.65,
+    "periodWeeks": 52
+   }
   },
   {
    "id": "co-famli",
@@ -592,7 +693,19 @@
     "co_calc",
     "co_faq"
    ],
-   "calculator": "https://famli.colorado.gov/individuals-and-families/how-famli-works/premium-and-benefits-calculator"
+   "calculator": "https://famli.colorado.gov/individuals-and-families/how-famli-works/premium-and-benefits-calculator",
+   "facts": {
+    "saww": 1608.91,
+    "maxFrom": "2026-07-01",
+    "maxPrev": 1381.45,
+    "premiumTotal": 0.0088,
+    "employeeShare": 0.0044,
+    "premium2027": 0.0086,
+    "complicationWeeks": 4,
+    "employerSizeHalf": 10,
+    "maxShareOfSaww": 0.9,
+    "premium2027From": "2027-01-01"
+   }
   },
   {
    "id": "mn-pl",
@@ -642,7 +755,13 @@
     "mn_rate"
    ],
    "calculator": null,
-   "start": "2026-01-01"
+   "start": "2026-01-01",
+   "facts": {
+    "premiumTotal": 0.0088,
+    "statuteRate": 0.007,
+    "smallEmployerRate": 0.0066,
+    "employeeMaxDeduction": 0.0044
+   }
   },
   {
    "id": "de-pl",
@@ -684,7 +803,19 @@
     "de_faq"
    ],
    "calculator": null,
-   "start": "2026-01-01"
+   "start": "2026-01-01",
+   "facts": {
+    "eligHours": 1250,
+    "eligMonths": 12,
+    "limitedLeaveWeeks": 6,
+    "limitedLeavePeriodMonths": 24,
+    "premiumTotal": 0.008,
+    "medicalRate": 0.004,
+    "parentalRate": 0.0032,
+    "caregivingRate": 0.0008,
+    "employeeMaxShare": 0.5,
+    "maxFixedUntilYear": 2027
+   }
   },
   {
    "id": "me-pfml",
@@ -732,7 +863,18 @@
     "me_faq"
    ],
    "calculator": null,
-   "start": "2026-05-01"
+   "start": "2026-05-01",
+   "facts": {
+    "saww": 1249.12,
+    "sawwFrom": "2026-07-01",
+    "chartMax": 1250,
+    "launchMax": 1199,
+    "premiumTotal": 0.01,
+    "smallEmployerPremium": 0.005,
+    "smallEmployerSize": 15,
+    "employeeMaxPremium": 0.005,
+    "contribStart": "2025-01-01"
+   }
   },
   {
    "id": "dc-pfl",
@@ -778,7 +920,17 @@
     "dc_calc",
     "dc_fund"
    ],
-   "calculator": "https://dcpaidfamilyleave.dc.gov/benefits-calculator/"
+   "calculator": "https://dcpaidfamilyleave.dc.gov/benefits-calculator/",
+   "facts": {
+    "minWage": 18.4,
+    "tierShareOfMinWage40h": 1.5,
+    "maxBefore": 1190,
+    "changeDate": "2026-10-01",
+    "medicalWeeksBefore": 12,
+    "familyWeeksBefore": 12,
+    "employerRate": 0.0075,
+    "minWageHours": 40
+   }
   },
   {
    "id": "md-famli",
@@ -799,7 +951,11 @@
    "sources": [
     "md_about"
    ],
-   "calculator": null
+   "calculator": null,
+   "facts": {
+    "eligHours": 680,
+    "firstReportsMonth": "April 2027"
+   }
   }
  ]
 }
