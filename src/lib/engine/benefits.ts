@@ -27,6 +27,8 @@ export interface Program {
   weeks: Partial<Record<Reason | 'combined' | 'pregnancy' | 'prenatal', number>>; waiting: Partial<Record<Reason, number>>;
   contrib: { rate: number; cap: number | null; weeklyMax?: number; covers?: string; note?: string };
   rule: string; sources: string[]; calculator: string | null; start?: string; contribStart?: string;
+  /** Other figures read on the program's official pages (eligibility thresholds, yearly caps...), each named in its key. */
+  facts?: Record<string, number | string>;
 }
 export type Status = 'single' | 'mfj' | 'hoh';
 

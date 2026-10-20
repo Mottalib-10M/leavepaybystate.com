@@ -28,3 +28,10 @@ The official quotes behind each figure are in `notes/releve-conges-*.md` (read 2
 - no em or en dash, none of the banned phrases listed in the test; no lawyer, no claim-filing service, no form.
 
 Then `npm run check` (build and every rule of the factory) must end at 0.
+
+## Adding a figure
+
+A program figure that the engine does not use (an eligibility threshold, a yearly contribution cap, a start date)
+goes in `programs.json > programs[i].facts` under an explicit key (`"eligibilityBaseWages": 19200`), copied from the
+quote in `notes/releve-conges-*.md` or from an official page you read yourself, whose URL is then added to
+`params-2026.json > sources` and to the page's `sources`. Write it in the text with `K.Pg(id).facts!.key`.
