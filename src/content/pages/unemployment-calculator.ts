@@ -14,7 +14,7 @@ export default definePage({
   nav: 'Unemployment calculator', card: 'How much unemployment you will get a week, for how many weeks and in total, in any state.',
   title: 'Unemployment Calculator 2026: How Much Will I Get a Week?',
   description: 'Unemployment calculator for 2026: weekly benefit, weeks and total in all 50 states and DC, from each state formula and cap, with federal tax and take-home pay.',
-  h1: 'How much unemployment will I get? The 2026 calculator for every state',
+  h1: 'How much unemployment will I get per week? The 2026 calculator for every state',
   intro: 'Pick your state and enter what you earned over the last twelve months. If one quarter was much better than the others, add it under More options: most states pay from the best quarter.',
   resume: `Unemployment pays roughly half of your former weekly wage, up to a cap your state sets each year. With ${K.usd(PAY)} of steady pay over the base period, the estimate is ${rows.map((x) => `${K.usd(x.r.weekly)} a week in ${x.s.name}`).join(', ')}. ${hqStates} jurisdictions compute the amount from the single quarter in which you earned the most, usually dividing it by 23 to 26; ${two} use the two best quarters, and ${year} use the pay of the whole base period. All of them then hold the result between a minimum and a maximum: in 2026 the maximums run from ${K.usd(Math.min(...K.STATES.map((s) => s.max)))} to ${K.usd(Math.max(...K.STATES.map((s) => s.max)))}. The number of weeks is a second limit: up to 26 in most states, fewer where the law ties the duration to the unemployment rate or caps the total at a share of your wages.`,
   body: (h) => `

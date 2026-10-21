@@ -14,7 +14,7 @@ export default definePage({
   nav: 'Florida unemployment', card: `1/26 of your best quarter, ${K.usd(S.min)} to ${K.usd(S.max)} a week, ${W} weeks at most.`,
   title: `Florida Unemployment 2026: Weekly Pay, ${W} Weeks, Total Cap`,
   description: `Florida unemployment in 2026: 1/26 of your best quarter, ${K.usd(S.min)} to ${K.usd(S.max)} a week, ${W} weeks at most and a total capped at 25% of base pay. See your own amount.`,
-  h1: `Florida unemployment in 2026: ${K.usd(S.max)} a week at most, for ${W} weeks`,
+  h1: `How much Florida unemployment pays in 2026: ${K.usd(S.max)} a week at most, for ${W} weeks`,
   intro: `Florida's Reemployment Assistance pays one twenty-sixth of your best quarter, from ${K.usd(S.min)} to ${K.usd(S.max)} a week, and stops after ${W} weeks or a quarter of your base-period wages.`,
   resume: `Florida pays the least of any large state, for the shortest time. Reemployment Assistance divides the wages of the best quarter of your base period by 26, with a minimum of ${K.usd(S.min)} and a maximum of ${K.usd(S.max)} a week. The maximum is reached with only ${K.usd(capQ)} in that quarter, so nearly every full-time worker gets ${K.usd(S.max)}: on ${K.usd(50000)} of steady pay the check is ${K.usd(mid.weekly)}, and on ${K.usd(20000)} it is ${K.usd(low.weekly)}. The duration is tied to the state unemployment rate, and the July 2026 Department of Labor table gives ${W} weeks as the current limit. A second cap holds the total to ${K.pct(S.bpwFrac!)} of base-period wages. The most a regular Florida claim can pay is therefore ${K.usd(S.max * W)}. To qualify you need at least ${K.usd(3400)} in the base period, wages in two quarters, and a base-period total of one and a half times the best quarter.`,
   body: (h) => `

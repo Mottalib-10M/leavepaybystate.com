@@ -1,5 +1,5 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://us-paid-leave-benefits.example";
+export const SITE_URL = "https://leavepaybystate.com";
 export const SITE_NAMES: Record<string, string> = {"en": "Leave Pay by State"};
 export const LANG_TAGS: Record<string, string> = {"en": "en-US"};
 export const OG_LOCALES: Record<string, string> = {"en": "en_US"};
@@ -16,7 +16,7 @@ export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners reads 
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"en": ["State unemployment insurance weekly benefit formulas and maximums", "Paid family and medical leave programs by state", "State disability insurance (SDI and TDI) benefits", "Federal tax on unemployment and paid leave benefits", "Base periods, high quarter wages and benefit duration"]};
-export const CONTACT_EMAIL = "contact@us-paid-leave-benefits.example";
+export const CONTACT_EMAIL = "contact@leavepaybystate.com";
 export const THEME_COLOR = '#1F5A3D';
 export const LOGO_SYMBOL = 'PAY';
 export const BING_VERIFY_CODE = '';

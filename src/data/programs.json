@@ -302,7 +302,6 @@
    ],
    "max": 1150,
    "min": 148,
-   "minNote": "$148 is the minimum read for claims from January 2026; the July 2026 minimum was not found.",
    "weeks": {
     "medical": 30
    },
@@ -332,9 +331,8 @@
     "dependentAllowanceMin": 20,
     "dependentAllowanceShare": 0.07,
     "dependentsMax": 5,
-    "maxShareOfSaww": 0.85,
     "tciWeeks": 8,
-    "minFrom": "2026-01-01",
+    "minFrom": "2026-07-01",
     "durationShareOfWages": 0.36,
     "contribRate2025": 0.013
    }
@@ -359,7 +357,6 @@
    ],
    "max": 1150,
    "min": 148,
-   "minNote": "$148 is the minimum read for claims from January 2026; the July 2026 minimum was not found.",
    "weeks": {
     "bonding": 8,
     "care": 8

@@ -62,7 +62,7 @@
   "nj_tdi": { "url": "https://www.nj.gov/labor/myleavebenefits/worker/tdi/", "label": { "en": "New Jersey Department of Labor, Temporary Disability Insurance" } },
   "nj_fli": { "url": "https://www.nj.gov/labor/myleavebenefits/worker/fli/", "label": { "en": "New Jersey Department of Labor, Family Leave Insurance" } },
   "nj_wait": { "url": "https://www.nj.gov/labor/myleavebenefits/worker/resources/waiting-week.shtml", "label": { "en": "New Jersey Department of Labor, the waiting week" } },
-  "ri_statute": { "url": "https://webserver.rilegislature.gov/Statutes/TITLE28/28-41/28-41-5.htm", "label": { "en": "Rhode Island General Laws § 28-41-5, weekly benefit rate" } },
+  "ri_statute": { "url": "https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-01/TDI-TCI%20Pamphlet-%202026.pdf", "label": { "en": "Rhode Island Department of Labor and Training, TDI/TCI claimant information pamphlet 2026: weekly rate of 4.62 % of the highest base-period quarter" } },
   "ri_faq": { "url": "https://dlt.ri.gov/individuals/temporary-disability-caregiver-insurance/claimants/tditci-frequently-asked-questions", "label": { "en": "Rhode Island DLT, TDI and TCI frequently asked questions" } },
   "ri_press": { "url": "https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4", "label": { "en": "Rhode Island DLT, maximum weekly benefit amounts from July 2026" } },
   "ri_tax": { "url": "https://dlt.ri.gov/press-releases/2026-tax-rates-unemployment-insurance-and-temporary-disability-insurance", "label": { "en": "Rhode Island DLT, 2026 TDI contribution rate and wage base" } },

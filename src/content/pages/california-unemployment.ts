@@ -14,7 +14,7 @@ export default definePage({
   nav: 'California unemployment', card: `About 1/26 of your best quarter, ${K.usd(S.min)} to ${K.usd(S.max)} a week, for up to 26 weeks.`,
   title: 'California Unemployment 2026: Weekly Amount, Cap, Weeks',
   description: `California unemployment in 2026: about 1/26 of your best quarter, ${K.usd(S.min)} to ${K.usd(S.max)} a week for up to 26 weeks, and not taxed by the state. Your amount here.`,
-  h1: `California unemployment in 2026: the ${K.usd(S.max)} ceiling and what you get below it`,
+  h1: `How much California unemployment pays in 2026: the ${K.usd(S.max)} ceiling and what you get below it`,
   intro: `The EDD pays between one twenty-third and one twenty-sixth of your best quarter, from ${K.usd(S.min)} to ${K.usd(S.max)} a week. Enter your pay to see where you land.`,
   resume: `California's Employment Development Department sets your weekly unemployment benefit from the single quarter of your base period in which you earned the most, using a table that pays between 1/23 and 1/26 of that quarter. The floor is ${K.usd(S.min)} and the ceiling is ${K.usd(S.max)} a week. The ceiling arrives fast: at 1/26, a best quarter of about ${K.usd(capQ)} already reaches it, which is roughly ${K.usd(capQ * 4)} a year of steady pay. Below that line, ${K.usd(30000)} earned evenly gives about ${K.usd(a.weekly)} a week and ${K.usd(45000)} gives ${K.usd(b.weekly)}. Anyone earning ${K.usd(90000)} gets the same ${K.usd(c.weekly)} as someone on half that pay. A claim lasts up to ${S.weeks[1]} weeks, and the total can never exceed half of your base-period wages, so most claimants can draw ${S.weeks[1]} full payments, up to ${K.usd(c.total)}. Benefits are federal taxable income, but California does not tax them.`,
   body: (h) => `

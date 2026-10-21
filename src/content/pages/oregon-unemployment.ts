@@ -17,7 +17,7 @@ export default definePage({
   nav: 'Oregon unemployment', card: `1.25% of your base-period wages a week, ${K.usd(S.min)} to ${K.usd(S.max)}, up to 26 weeks.`,
   title: 'Oregon Unemployment 2026: 1.25% of Wages, Max and Weeks',
   description: `Oregon unemployment in 2026: 1.25% of your total base-period wages each week, ${K.usd(S.min)} to ${K.usd(S.max)}, for up to 26 weeks; 500 hours of work can also qualify you.`,
-  h1: `Oregon unemployment in 2026: 1.25% of your year, up to ${K.usd(S.max)} a week`,
+  h1: `Oregon unemployment calculator 2026: 1.25% of your year, up to ${K.usd(S.max)} a week`,
   intro: `Oregon pays 1.25% of everything you earned in the base period, each week, from ${K.usd(S.min)} to ${K.usd(S.max)}. Enter your yearly pay; quarters do not matter here.`,
   resume: `Oregon's weekly unemployment benefit is 1.25% of your total wages in the base period, which works out to ${K.pct(repl)} of your average weekly pay over the year, one of the highest replacement rates in the country. The Oregon Employment Department holds the result between ${K.usd(S.min)} and ${K.usd(S.max)} a week in 2026. The ceiling arrives at about ${K.usd(capYear)} of base-period wages: ${K.usd(30000)} gives ${K.usd(a.weekly)} a week, ${K.usd(45000)} gives ${K.usd(b.weekly)} and ${K.usd(60000)} gives ${K.usd(c.weekly)}. Since only the yearly total counts, the timing of your pay within the year makes no difference. A claim lasts up to ${S.weeks[1]} weeks, within a third of base-period wages, a cap that the 1.25% rate keeps you just under. A full claim at ${K.usd(60000)} is worth ${K.usd(c.total)}. You qualify with more than ${K.usd(1000)} in the base period and total wages above one and a half times the best quarter, or with 500 hours of work.`,
   body: (h) => `
