@@ -15,7 +15,8 @@ const inMenu = (g: Group, lang: Locale): NavLink[] => PAGES.filter((p) => p.grou
 export function navCategories(lang: Locale): NavCategory[] {
   return GROUPS.map((g) => ({ label: g.label, links: inMenu(g.id, lang) })).filter((c) => c.links.length);
 }
-export const navDirect = (lang: Locale): NavLink[] => [link('method', lang)];
+// Methode : liee en bas de page, hors du menu du haut pour qu'il tienne sur une ligne.
+export const navDirect = (_lang: Locale): NavLink[] => [];
 export const footerColumns = (lang: Locale): NavCategory[] => [
   { label: 'Paid leave by state', links: PAGES.filter((p) => p.prog).map((p) => link(p.id, lang)) },
   ...GROUPS.map((g) => ({ label: g.label, links: inMenu(g.id, lang) })).filter((c) => c.links.length),
