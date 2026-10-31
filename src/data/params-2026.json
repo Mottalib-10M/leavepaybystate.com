@@ -25,7 +25,8 @@
   "AL": { "status": "exempt", "source": "al_40" },
   "MT": { "status": "taxed", "source": "mt_form2" },
   "WA": { "status": "none", "source": "wa_dor" },
-  "SD": { "status": "none", "source": "sd_dor" }
+  "SD": { "status": "none", "source": "sd_dor" },
+  "FL": { "status": "none", "source": "fl_const" }
  },
  "rr2025_4": { "_doc": "Rev. Rul. 2025-4 (source irs_rr_2025_4): effective for payments made on or after January 1, 2025; calendar year 2025 is a transition period.", "effectiveFrom": "2025-01-01", "transitionYear": 2025 },
  "sources": {
@@ -45,6 +46,7 @@
   "al_40": { "url": "https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf", "label": { "en": "Alabama Department of Revenue, 2025 Form 40 booklet" } },
   "mt_form2": { "url": "https://revenue.mt.gov/files/forms/Montana-Individual-Income-Tax-Return-Form-2-Instructions/2025_Montana_Individual_Income_Tax_Return_Form_2_Instructions.pdf", "label": { "en": "Montana Department of Revenue, 2025 Form 2 instructions" } },
   "wa_dor": { "url": "https://dor.wa.gov/taxes-rates/income-tax", "label": { "en": "Washington Department of Revenue, Income tax" } },
+  "fl_const": { "url": "https://www.flsenate.gov/Laws/Constitution", "label": { "en": "Constitution of the State of Florida, Article VII, Section 5(a) (read 2026-10-31)" } },
   "sd_dor": { "url": "https://dor.sd.gov/individuals/taxes/", "label": { "en": "South Dakota Department of Revenue, Taxes for individuals" } },
   "ma_ui": { "url": "https://www.mass.gov/info-details/how-unemployment-insurance-benefits-are-determined", "label": { "en": "Massachusetts DUA, How unemployment insurance benefits are determined" } },
   "nj_ui_2026": { "url": "https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml", "label": { "en": "New Jersey Department of Labor, 2026 benefit rates" } },
